@@ -36,7 +36,8 @@
 -->
 <script>
   window.SITE_CONFIG = {
-    openChatUrl: "https://open.kakao.com/o/gsNO62Xi"
+    openChatUrl: "https://open.kakao.com/o/gsNO62Xi",
+    kakaoJsKey: "f60b8bda7ce12cb3d57fc253ce7e8648"   // 카카오 개발자 > 앱 > JavaScript 키 (공개용 키)
   };
 </script>
 </head>
@@ -162,6 +163,7 @@
 <!-- 7. 하단 -->
 <footer class="foot">
   <div class="flag-band thin" aria-hidden="true"><i class="r"></i><i class="w"></i><i class="b"></i><i class="w"></i><i class="r"></i></div>
+  <button type="button" class="btn btn-kakao" id="kakao-share">카카오톡으로 공유하기</button>
   <p class="thanks">기도와 후원으로 함께해 주셔서 감사합니다.</p>
   <p class="team">대구동신교회 아포슬 청년부 태국 선교팀</p>
 </footer>
@@ -176,6 +178,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/main.js"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

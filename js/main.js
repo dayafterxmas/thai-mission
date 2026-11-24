@@ -69,6 +69,43 @@
     });
   }
 
+  /* ── 카카오톡 공유: 카드 아래 버튼 2개(기도·재정) ── */
+  var shareBtn = document.getElementById("kakao-share");
+  var SITE = "https://thai-mission.web.app/";
+  function fallbackShare() {
+    if (navigator.share) {
+      navigator.share({ title: "Thailand, YOU ARE LOVED", url: SITE }).catch(function () {});
+      return;
+    }
+    copyText(SITE).then(function (ok) { toast(ok ? "링크를 복사했어요" : "공유를 열 수 없어요. 주소창의 링크를 복사해 주세요"); });
+  }
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function () {
+      var key = (cfg.kakaoJsKey || "").trim();
+      try {
+        if (!key || !window.Kakao) throw new Error("no-sdk");
+        if (!window.Kakao.isInitialized()) window.Kakao.init(key);
+        window.Kakao.Share.sendDefault({
+          objectType: "feed",
+          content: {
+            title: "Thailand, YOU ARE LOVED",
+            description: "태국 치앙마이 동계 단기선교에 초대합니다. 기도와 후원으로 함께해 주세요.",
+            imageUrl: SITE + "images/og-image.jpg",
+            imageWidth: 1200,
+            imageHeight: 630,
+            link: { mobileWebUrl: SITE, webUrl: SITE }
+          },
+          buttons: [
+            { title: "기도로 함께하기", link: { mobileWebUrl: SITE + "#pray-support", webUrl: SITE + "#pray-support" } },
+            { title: "재정으로 함께하기", link: { mobileWebUrl: SITE + "#finance-support", webUrl: SITE + "#finance-support" } }
+          ]
+        });
+      } catch (e) {
+        fallbackShare();
+      }
+    });
+  }
+
   /* ── 하단 이동 바: 현재 구역 강조 ── */
   var links = document.querySelectorAll(".dock a[data-sec]");
   if ("IntersectionObserver" in window && links.length) {
