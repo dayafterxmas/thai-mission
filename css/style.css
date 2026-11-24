@@ -62,7 +62,7 @@ a{color:inherit}
 .btn-red{background:var(--red)}
 .btn-navy{background:var(--navy)}
 .btn-cream{background:var(--cream);color:var(--red)}
-.btn-kakao{background:#fee500;color:#191600;margin:30px var(--pad) 0;width:calc(100% - var(--pad)*2)}
+.btn-kakao{background:#fff;color:var(--navy);border:3px solid var(--navy);margin:30px var(--pad) 0;width:calc(100% - var(--pad)*2)}
 .btn-yellow{background:#f3c64b;color:var(--ink)}
 .btn:active{transform:translateY(1px);filter:brightness(.93)}
 

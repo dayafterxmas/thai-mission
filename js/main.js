@@ -82,6 +82,7 @@
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
       var key = (cfg.kakaoJsKey || "").trim();
+      var prayUrl = /^https?:\/\//i.test(chatUrl) ? chatUrl : SITE + "#pray-support"; // 오픈채팅 주소로 바로 연결
       try {
         if (!key || !window.Kakao) throw new Error("no-sdk");
         if (!window.Kakao.isInitialized()) window.Kakao.init(key);
@@ -96,7 +97,7 @@
             link: { mobileWebUrl: SITE, webUrl: SITE }
           },
           buttons: [
-            { title: "기도로 함께하기", link: { mobileWebUrl: SITE + "#pray-support", webUrl: SITE + "#pray-support" } },
+            { title: "기도후원 오픈채팅 참여하기", link: { mobileWebUrl: prayUrl, webUrl: prayUrl } },
             { title: "재정으로 함께하기", link: { mobileWebUrl: SITE + "#finance-support", webUrl: SITE + "#finance-support" } }
           ]
         });
